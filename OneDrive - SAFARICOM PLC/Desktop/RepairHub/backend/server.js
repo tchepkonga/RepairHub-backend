@@ -8,6 +8,11 @@ const upload = multer({ dest: 'uploads/' });
 const app = express();
 const port = 3000;
 
+app.use('/api/users', require('./routes/users'));
+
+app.use('/api/login', require('./routes/login'));
+
+
 app.use(express.json());
 
 mongoose.connect('mongodb://127.0.0.1/repairhub', {useNewUrlParser: true, useUnifiedTopology: true})
