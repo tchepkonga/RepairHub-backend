@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const auth = (role) => {
+const auth = (role = null) => {
     return async (req, res, next) => {
         try {
             const token = req.header('Authorization').replace('Bearer ', '');
@@ -12,6 +12,7 @@ const auth = (role) => {
                 throw new Error();
             }
 
+            // If a role is specified in the middleware, check it against the user's role
             if (role && role !== decoded.role) {
                 return res.status(403).send({ error: 'Insufficient permissions.' });
             }

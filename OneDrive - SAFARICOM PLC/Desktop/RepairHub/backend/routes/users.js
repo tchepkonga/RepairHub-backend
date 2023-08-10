@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const { check, validationResult } = require('express-validator');
 
 // Login Route
 router.post('/login', async (req, res) => {
@@ -27,22 +28,33 @@ router.post('/login', async (req, res) => {
 });
 
 // Registration Route
-router.post('/register', async (req, res) => {
-    try {
-        // Check if email already exists
-        let user = await User.findOne({ email: req.body.email });
-        if (user) return res.status(400).send('User already registered.');
+router.post('/register', [
+  // Check if email is valid
+  check('email').isEmail().withMessage('Email is not valid'),
+  // Check if password is at least 5 chars long
+  check('password').isLength({ min: 5 }).withMessage('Password must be at least 5 characters long')
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+  }
+  
+  try {
+      // Check if email already exists
+      let user = await User.findOne({ email: req.body.email });
+      if (user) return res.status(400).send('User already registered.');
 
-        user = new User(req.body);
-        await user.save();
+      user = new User(req.body);
+      await user.save();
 
-        res.send({
-            email: user.email,
-            id: user._id
-        });
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+      // Optionally: send a token or some data back upon successful registration
+      res.send({
+          email: user.email,
+          id: user._id
+      });
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
 });
 
 module.exports = router;
