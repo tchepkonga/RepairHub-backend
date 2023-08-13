@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -55,6 +56,15 @@ router.post('/register', [
   } catch (error) {
       res.status(400).send(error.message);
   }
+});
+// Admin-only route
+router.get('/admin-endpoint', auth('admin'), (req, res) => {
+  res.send('Hello Admin!');
+});
+
+// Employee-only route
+router.get('/employee-endpoint', auth('employee'), (req, res) => {
+  res.send('Hello Employee!');
 });
 
 module.exports = router;
