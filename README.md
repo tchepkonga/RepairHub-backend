@@ -1,7 +1,7 @@
 # RepairHub-backend
 This is the backend for the RepairHub application, built using Node.js, Express, and MongoDB.
 # Overview
-The RepairHub backend manages the order processing for a device repair service. Customers can create orders detailing their device and the type of damage, and they can later search for their orders using various criteria.
+The RepairHub backend manages the order processing for a device repair service. Employees can create orders detailing their device and the type of damage, and they can later search for their orders using various criteria.
 # Installation and Setup
 Prerequisites
 Node.js
