@@ -18,14 +18,11 @@ MONGO_URI: Your MongoDB connection string.
 PORT: (Optional) Port number for the server. Defaults to 5000 if not specified.
 Run the server:
 nodemon
-
-Of course! Here's a basic README.md for the RepairHub-backend. You can copy and paste this into your README.md file for the backend repository:
-
 RepairHub Backend
 This is the backend for the RepairHub application, built using Node.js, Express, and MongoDB.
 
 Overview
-The RepairHub backend manages the order processing for a device repair service. Customers can create orders detailing their device and the type of damage, and they can later search for their orders using various criteria.
+The RepairHub backend manages the order processing for a device repair service. Employees can create orders detailing their device and the type of damage, and they can later search for their orders using various criteria.
 
 Installation and Setup
 Prerequisites
@@ -35,17 +32,14 @@ Installation
 Clone this repository:
 
 bash
-Copy code
 git clone https://github.com/tchepkonga/RepairHub-backend.git
 Navigate to the project directory:
 
 bash
-Copy code
 cd RepairHub-backend
 Install the dependencies:
 
 bash
-Copy code
 npm install
 Create a .env file in the root directory and configure the following environment variables:
 
@@ -54,7 +48,6 @@ PORT: (Optional) Port number for the server. Defaults to 5000 if not specified.
 Run the server:
 
 bash
-Copy code
 nodemon
 The server will start, and you should see a message indicating the port it's running on.
 # API Endpoints
