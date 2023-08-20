@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
     // Generate JWT token
-    const token = jwt.sign({ _id: user._id, role: user.role }, 'YOUR_SECRET_KEY', { expiresIn: '1h' });
+    const token = jwt.sign({ _id: user._id, role: user.role }, 'YOUR_SECRET_KEY', { expiresIn: '7d' });
     res.send(token);
   } catch (error) {
     res.status(400).send(error);
